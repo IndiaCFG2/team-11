@@ -10,5 +10,6 @@ urlpatterns = [
        path('signup/',views.register_employee,name='employee-create'),
      path('login/',views.login_asview,name='login'),
      path('logout/',views.logout_asview,name='logout'),
-     path('delete/<int:id1>',views.delete,name="delete")
+     path('delete/<int:id1>',views.delete,name="delete"),
+     
 ]

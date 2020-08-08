@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+   <!-- Font awesome Link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <!-- Bootstrap social-->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css.map">
+  </head>
+  <body>
+    <div class="container">
+
+
+    <div class="row justify-content-center">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Assign Schools To Program Manager</h5>
+            <form class="form-signin" method="post">
+              {% csrf_token %}
+              <div class="form-label-group">
+                <label for="employee_name">Employee Name</label>
+                <input type="text" name="employee_name" id="employee_name" class="form-control" placeholder="Employee Name" required autofocus>
+
+              </div>
+              <br>
+
+              <div class="form-label-group">
+                <label for="school_name">School Name</label>
+                <input type="text" name="school_name" id="school_name" class="form-control" placeholder="School Name" required>
+
+              </div>
+              <br>
+
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Send Request</button>
+              <hr class="my-4">
+</form></div></div></div>
+</div>
+
+
+<div class="row row-content  justify-content-center" >
+
+  <div class="col-5">
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Employees List</h5>
+
+        <p class="card-text">
+          {% for employee in employees%}
+
+          <h4>Employee Name: {{employee.name}}</h4></br>
+
+          {% endfor %}
+
+
+        </p>
+
+      </div>
+    </div>
+
+</div>
+<div class="col-5">
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Schools List</h5>
+
+      <p class="card-text">
+        {% for school in schools %}
+
+        <h4> Name: {{school.name}}</h4>
+        <h4>Location:{{school.location}}</h4><br>
+
+        {% endfor %}
+
+
+      </p>
+
+    </div>
+  </div>
+
+  </div>
+</div>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+
+
+</body>
+</html>
