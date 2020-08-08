@@ -2,46 +2,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="http://example.com/myicon.png">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'teachers/main.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Teachers Section</title>
 </head>
-<body style="background-color: #F6F8FB;">
-
-<header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #ffffff;">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-               <a>Help: +852 9838 9615</a>
-            </div>
-            <!-- Navbar Right Side -->
+<body>
+      <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"> </span>
+            </button>
+            <a class="navbar-brand mr-auto" href="#"><img src="{% static 'teachers/logo.png' %}" height="30" width="41"></a>
+            <div class="collapse navbar-collapse" id="#Navbar">
+                            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-home fa-lg">Home</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-info fa-lg">About</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-list fa-lg">Menu</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-address-card fa-lg">Contact</span></a></li>
+            </ul>
             <div class="navbar-nav">
-                {% if request.user.is_authenticated %}
-                <a class="nav-item nav-link" href="#">About</a>
-                <a class="nav-item nav-link" href="#">Post Queries</a>
-                {% endif %}
-            </div>
+            {% if user.is_authenticated %}
+            <span class="navbar-text">
+                    <!--<a data-toggle="modal" data-target="#loginModal">-->
+                        <a id="buttonLogin" type="button" role="button">
+                    <span class="fa fa-sign-in"></span> Logout</a>
+                </span>
+            {% else %}
+                        <span class="navbar-text">
+                    <!--<a data-toggle="modal" data-target="#loginModal">-->
+                        <a id="buttonLogin" type="button" role="button">
+                    <span class="fa fa-sign-in"></span> Login</a>
+                </span>
+            {% endif %}
           </div>
-      </nav>
-</header>
+            </div>
+        </div>
+    </nav>
+<header class="jumbotron">
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-12 col-sm-3 align-self-center">
+                    <img src="{% static 'teachers/logo.png' %}" class="img-fluid">
+                </div>
+                <div class="col-12 col-sm-9">
+                    <h1>KEF EDUCATION FOUNDATION</h1>
+                    <p>Key Education Foundation offers teacher training for early educators on a variety of topics that help make teaching and learning practices in the classroom developmentally appropriate, play based and effective.</p>
+                </div>
+            </div>
+        </div>
+    </header>
 
 {% block content %}{% endblock %}
+<footer class="footer">
+        <div class="container">
+            <div class="row">             
+                <div class="col-4 offset-1 col-sm-2">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="aboutus.html">About</a></li>
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-7 col-sm-5">
+                    <h5>Our Address</h5>
+                    <address>
+                  121, Lorem Ipsum<br>
+                  Hyderabad, Telangana<br>
+                  INDIA<br>
+                  <i class="fa fa-phone fa-lg"></i> : +852 1234 5678<br>
+                  <i class="fa fa-fax fa-lg"></i> : +852 8765 4321<br>
+                  <i class="fa fa-envelope fa-lg"></i> : <a href="mailto:kef.jpmc@keffoundation.net">kef.jpmc@keffoundation.net</a>
+               </address>
+                </div>
+                <div class="col-12 col-sm-4 align-self-center">
+                    <div class="text-center">
+                        <a class="btn btn-social-icon btn-google" href="http://google.com/+"><i class="fa fa-google-plus fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube fa-lg"></i></a>
+                        <a class="btn btn-social-icon btn-envelope" href="mailto:"><i class="fa fa-envelope-o fa-lg"></i></a>
+                    </div>
+                </div>
+           </div>
+           <div class="row justify-content-center">             
+                <div class="col-auto">
+                    <p>© Copyright 2020 Code For Good</p>
+                </div>
+           </div>
+        </div>
+    </footer>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 </body>
 </html>
