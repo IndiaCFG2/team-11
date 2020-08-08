@@ -36,32 +36,47 @@ def test(request):
 
 #
 def query(request):
+<<<<<<< HEAD
     queries=Query.objects.all()
     return render(requests,'teachers/queries.html')
 
+=======
+	queries = Query.objects.all()
+	context = {
+		'queries': queries
+	}
+	return render(request, 'teachers/queries.html', context)
+>>>>>>> 4e79aa274d4315b22bb20db923f2323f73e946cd
 
 
+class QueryCreateView(CreateView):
+	model = Query
+	fields = ['teacher', 'title' , 'description']
 
-class QueryCreateView(LoginRequiredMixin, CreateView):
-    model = Query
-    fields = ['teacher', 'title' , 'description']
-
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+	def form_valid(self, form):
+	    form.instance.author = self.request.user
+	    return super().form_valid(form)
 
 
-class QueryDetailView(LoginRequiredMixin, DetailView):
-    model = Query
+class QueryDetailView(DetailView):
+	model = Query
 
-class QueryUpdateView(LoginRequiredMixin, UpdateView):
-    model = Query
-    fields = ['teacher', 'title' , 'description']
 
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
+class QueryUpdateView(UpdateView):
+	model = Query
+	fields = ['teacher', 'title' , 'description']
 
+	def form_valid(self, form):
+	    form.instance.author = self.request.user
+	    return super().form_valid(form)
+	    
+
+<<<<<<< HEAD
 class QueryDeleteView(LoginRequiredMixin, DeleteView):
     model = Query
     success_url = '/teachers/queries/'
+=======
+class QueryDeleteView(DeleteView):
+	model = Query
+	success_url = '/teachers/queries/'
+>>>>>>> 4e79aa274d4315b22bb20db923f2323f73e946cd
