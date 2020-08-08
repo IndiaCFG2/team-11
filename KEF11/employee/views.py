@@ -40,6 +40,7 @@ def register_school(request):
         phonenumber= 98899877
         headmaster=request.POST['headmaster']
 
+
         send_mail('KFSFOUNDATION','Hello {} thanks for registering'.format(school_name),'kfsngo@gmail.com',[email],fail_silently=False,)
         school=Schools.objects.create(employee=request.user,name=school_name,phone=phonenumber,email=email,headmaster=headmaster)
         school.save()
@@ -58,28 +59,43 @@ def register_employee(request):
         try:
             a=Users.objects.get(useremail=emai)
         except Users.DoesNotExist :
-            return HttpResponse("NOt validated") 
-    
+            return HttpResponse("NOt validated")
+
         form1=RegistrationForm(request.POST)
         if form1.is_valid() :
             userr=form1.save()
-            
-            
+
+
             return redirect("/login")
         return render(request,"employee/register.html",{'err':form1.errors})
     return render(request,"employee/register.html",{'form':form})
 
 
-            
-        
-        
+
+
+
 
 
 
 
 def home(request):
+    return render(request,"home.html")
 
-    return render(request,'employee/normal.html')
+def list_schools(request):
+    user=User.objects.first()
+    if request.method =='POST':
+        name=request.POST['search']
+
+
+        if user.schools_set.filter(name=name)!=None:
+            schools=user.schools_set.filter(name=name)
+            return render(request,'list_schools.html',{'schools':schools,'t':1})
+        elif user.schools_set.filter(headmaster=name) != None:
+            schools=user.schools_set.filter(headmaster=name)
+            return render(request,'list_schools.html',{'schools':schools,'t':2})
+
+
+    schools=user.schools_set.all()
 
 def delete(request,id1):
     f=Schools.objects.filter(id=id1)
@@ -98,7 +114,7 @@ def login_asview(request):
     if request.method=='POST':
         username=request.POST['username']
         password=request.POST['password']
-        
+
         form=AuthenticationForm(data=request.POST)
 
         if form.is_valid():

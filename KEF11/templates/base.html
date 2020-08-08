@@ -28,24 +28,45 @@
     padding: 25px;
     }
 </style>
+
+{% block extra_head%}
+{% endblock %}
 </head>
 <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Assign Schools</a>
+      <li class="nav-item active ">
+        <a class="nav-link" href="{%url 'home'%}">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="{%url 'register_school'%}">Assign Schools</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">List of schools</a>
+        <a class="nav-link" href="{%url 'list_schools'%}">List of schools</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Map of schools</a>
+        <a class="nav-link" href="{%url 'map'%}">Map of schools</a>
       </li>
 
     </ul>
+
+    
   </nav>
 
   <div class="container ">
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+          {{ message }}
+
+        </div>
+        {% endfor %}
+    {%endif %}
+
+    {% block content %}
+
+    {% endblock %}
 
 
     </div>
