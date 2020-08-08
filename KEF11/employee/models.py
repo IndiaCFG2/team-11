@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Employee(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE,default=None)
-
+    
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -13,3 +13,6 @@ class Employee(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse('candidate-detail', kwargs={'pk': self.pk})
+class Users(models.Model):
+    useremail=models.EmailField()
+    is_super=models.BooleanField(default=False)
