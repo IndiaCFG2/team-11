@@ -53,3 +53,15 @@ class Stats(models.Model):
 	def __str__(self):
 	    return self.teacher.name
 
+
+class Query(models.Model):
+	class Meta:
+	    verbose_name_plural = 'Queries'
+	    
+	teacher = models.ForeignKey(Teachers, on_delete=models.CASCADE)
+	title = models.CharField(max_length=100)
+	description = models.TextField(max_length = 1000, help_text="Please don't exceed 450 characters.")
+
+	def __str__(self):
+	    return self.teacher.name
+

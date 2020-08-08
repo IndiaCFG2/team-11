@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Subjects, Stats, Teachers
+from .models import Subjects, Stats, Teachers, Query
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.db.models import Q
@@ -30,3 +30,38 @@ def tutorial(request):
 def test(request):
     context = {}
     return render(request, 'teachers/test.html', context)
+
+
+
+def query(request):
+	queries = Query.objects.all()
+    context = {
+    	'queries': queries
+    }
+    return render(request, 'teachers/queries.html', context)
+
+
+
+class QueryCreateView(LoginRequiredMixin, CreateView):
+    model = Query
+    fields = ['teacher', 'title' , 'description']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class QueryDetailView(LoginRequiredMixin, DetailView):
+    model = Query
+
+class QueryUpdateView(LoginRequiredMixin, UpdateView):
+    model = Query
+    fields = ['teacher', 'title' , 'description']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class QueryDeleteView(LoginRequiredMixin, DeleteView):
+    model = Query
+    success_url = '/teachers/queries/'
