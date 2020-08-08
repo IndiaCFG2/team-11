@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.conf import settings
 from django.core.mail import send_mail
 from Schools.models import Schools
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,auth
 
 # Create your views here.
 
@@ -17,16 +17,29 @@ def register_school(request):
         school=Schools.objects.create(employee=request.user,name=school_name,phone=phonenumber,email=email,headmaster=headmaster)
         school.save()
 
-        return redirect('employee/normal.html')
+        return redirect("/home")
 
-    return render(request,'employee/school_register.html')
+    return render(request,'school_register.html')
 
 
 
 def home(request):
 
-    return render(request,'employee/normal.html')
+    return render(request,'home.html')
 
+
+
+def map(request):
+    mapbox_access_token = 'pk.eyJ1Ijoic3JpZGhhcjAwMDciLCJhIjoiY2s3b2lra3N4MDVyNzNmbXNsZGZsY2htdiJ9.QGZpr-aeWNBms5QBmdHEUA'
+    return render(request, 'map.html',
+                  { 'mapbox_access_token': mapbox_access_token })
+
+
+def list_schools(request):
+    user=User.objects.first()
+    schools=user.schools_set.all()
+
+    return render(request,'list_schools.html',{'schools':schools})
 
 
 def login(request):
@@ -40,10 +53,10 @@ def login(request):
             return redirect('home')
         else:
             messages.info(request,'invalid login details')
-            return redirect('employee/login.html')
+            return redirect('login.html')
 
     else:
-        return render(request,'employee/login.html')
+        return render(request,'login.html')
 
 
 def logout(request):

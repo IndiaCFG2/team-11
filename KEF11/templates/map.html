@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Locate the user</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+}
+</style>
+</head>
+<body>
+	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+<link
+rel="stylesheet"
+href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css"
+type="text/css"
+/>
+<div id="map" style="width: 900px; height: 700px;" ></div>
+<script>
+	mapboxgl.accessToken = '{{ mapbox_access_token }}';
+	mapboxgl.accessToken = 'pk.eyJ1Ijoic3JpZGhhcjAwMDciLCJhIjoiY2s3b2lra3N4MDVyNzNmbXNsZGZsY2htdiJ9.QGZpr-aeWNBms5QBmdHEUA';
+		var map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/streets-v11',
+		center: [78.46667, 17.36667],
+		zoom: 9
+		});
+
+		var popup = new mapboxgl.Popup({ closeOnClick: false })
+		.setLngLat([78.3211, 17.3848])
+		.setHTML('<h1><b>School -A</b></h1>')
+		.addTo(map);
+    var popup = new mapboxgl.Popup({ closeOnClick: false })
+		.setLngLat([78.4, 17.3])
+		.setHTML('<h1><b>School -B</b></h1>')
+		.addTo(map);
+		var popup = new mapboxgl.Popup({ closeOnClick: false })
+		.setLngLat([78.3169, 17.380799])
+		.setHTML('<h1><b>School -C</b></h1>')
+		.addTo(map);
+		var popup = new mapboxgl.Popup({ closeOnClick: false })
+		.setLngLat([78.548487, 17.097637])
+		.setHTML('<h1><b>School-D</b></h1>')
+		.addTo(map);
+
+		var popup = new mapboxgl.Popup({ closeOnClick: false })
+		.setLngLat([78.5, 17.45])
+		.setHTML('<h1><b>School -E</b></h1>')
+		.addTo(map);
+    // Add geolocate control to the map.
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+        })
+    );
+		map.addControl(new mapboxgl.NavigationControl());
+
+				map.addControl(
+		new MapboxDirections({
+		accessToken: mapboxgl.accessToken
+		}),
+		'top-left'
+		);
+
+				map.addControl(
+		new MapboxGeocoder({
+		accessToken: mapboxgl.accessToken,
+		mapboxgl: mapboxgl
+		})
+		);
+	var nullIsland = new mapboxgl.MercatorCoordinate(77,17, 0);
+	var popup = new mapboxgl.Popup({ closeOnClick: false })
+.setLngLat([-96, 37.8])
+.setHTML('<h1>Hello World!</h1>')
+.addTo(map);
+
+</script>
+
+</body>
+</html>
