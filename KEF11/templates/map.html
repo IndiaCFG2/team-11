@@ -1,29 +1,39 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8" />
-<title>Locate the user</title>
-<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+{% block extra_head %}
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet" />
-<style>
-body { margin: 0; padding: 0; }
-#map { position: absolute; top: 0; bottom: 0; width: 100%; }
-}
-</style>
-</head>
-<body>
-	<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
 <link
 rel="stylesheet"
 href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.css"
 type="text/css"
 />
-<div id="map" style="width: 900px; height: 700px;" ></div>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+}
+</style>
+
+{% endblock %}
+
+{%block content %}
+
+
+
+<div class="container">
+	<div class="row row-content">
+		<div class="col-12">
+
+			<div id="map" style="width: 900px; height: 500px;" ></div>
+		</div>
+
+	</div>
+
 <script>
 	mapboxgl.accessToken = '{{ mapbox_access_token }}';
 	mapboxgl.accessToken = 'pk.eyJ1Ijoic3JpZGhhcjAwMDciLCJhIjoiY2s3b2lra3N4MDVyNzNmbXNsZGZsY2htdiJ9.QGZpr-aeWNBms5QBmdHEUA';
@@ -86,6 +96,6 @@ type="text/css"
 .addTo(map);
 
 </script>
+</div>
 
-</body>
-</html>
+{%endblock %}

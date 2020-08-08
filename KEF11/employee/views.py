@@ -13,11 +13,13 @@ def register_school(request):
         phonenumber= 98899877
         headmaster=request.POST['headmaster']
 
+
+
         send_mail('KFSFOUNDATION','Hello {} thanks for registering'.format(school_name),'kfsngo@gmail.com',[email],fail_silently=False,)
         school=Schools.objects.create(employee=request.user,name=school_name,phone=phonenumber,email=email,headmaster=headmaster)
         school.save()
 
-        return redirect("/home")
+        return redirect("/")
 
     return render(request,'school_register.html')
 
@@ -37,9 +39,26 @@ def map(request):
 
 def list_schools(request):
     user=User.objects.first()
+    if request.method =='POST':
+        name=request.POST['search']
+
+
+        if user.schools_set.filter(name=name)!=None:
+            schools=user.schools_set.filter(name=name)
+            return render(request,'list_schools.html',{'schools':schools,'t':1})
+        elif user.schools_set.filter(headmaster=name) != None:
+            schools=user.schools_set.filter(headmaster=name)
+            return render(request,'list_schools.html',{'schools':schools,'t':2})
+
+
     schools=user.schools_set.all()
 
     return render(request,'list_schools.html',{'schools':schools})
+
+
+
+
+
 
 
 def login(request):

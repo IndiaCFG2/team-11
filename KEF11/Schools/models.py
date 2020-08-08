@@ -12,6 +12,7 @@ class Schools(models.Model):
 	email = models.EmailField()
 	phone = models.IntegerField()
 	headmaster = models.CharField(max_length=100)
+	
 	date_posted = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
