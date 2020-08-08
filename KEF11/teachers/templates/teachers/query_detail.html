@@ -1,0 +1,26 @@
+{% extends "teachers/base.html" %}
+{% block content %}
+  <div style="padding-left:930px">
+  <a href="{% url 'queries-home' %}"><i class="fa fa-arrow-left" style="font-size:24px; color:grey; padding-right:20px"></i></a>
+  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'query-update' object.id %}">Update</a>
+  <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'query-delete' object.id %}">Delete</a>
+  </div>
+  <div class="container" style="padding-top:20px">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Teacher</th>
+        <th>Title</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ object.teacher }}</td>
+        <td>{{ object.title }}</td>
+        <td>{{ object.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+{% endblock content %}

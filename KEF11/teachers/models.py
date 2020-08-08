@@ -1,5 +1,6 @@
 from django.db import models
 from Schools.models import Schools
+from django.urls import reverse
 
 # Create your models here.
 
@@ -64,4 +65,7 @@ class Query(models.Model):
 
 	def __str__(self):
 	    return self.teacher.name
+
+	def get_absolute_url(self):
+	    return reverse('query-detail', kwargs={'pk': self.pk})
 
