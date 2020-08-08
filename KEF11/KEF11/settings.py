@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'Schools',
     'teachers',
     'crispy_forms',
+    'manager'
 ]
 
 MIDDLEWARE = [

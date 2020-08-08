@@ -12,8 +12,12 @@ class Schools(models.Model):
 	email = models.EmailField()
 	phone = models.IntegerField()
 	headmaster = models.CharField(max_length=100)
-	location=models.CharField(max_length=100,blank=True)
+
 	date_posted = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
 		return self.name
+
+class UnregisteredSchools(models.Model):
+	name=models.CharField(max_length=100)
+	location=models.CharField(max_length=100)

@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('employee.urls')),
     path('teachers/',include('teachers.urls')),
+    path('manager/',include('manager.urls')),
 ]+ static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

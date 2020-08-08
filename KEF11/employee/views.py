@@ -15,12 +15,13 @@ from django.contrib.auth import login,logout
 from employee.models import Employee,Users,Assign
 from django.utils import timezone
 import datetime
+from django.db.models import Q
+
 
 
 def home(request):
-    recievedrequests=Assign.objects.all()
 
-    return render(request,'home.html',{'recievedrequests':recievedrequests})
+    return render(request,'home.html')
 
 
 
@@ -51,9 +52,9 @@ def register_school(request):
         p=Users(useremail=email)
         p.save()
 
-        return redirect('/home')
+        return redirect('home')
 
-    return render(request,'employee/school_register.html')
+    return render(request,'school_register.html')
 
 def register_employee(request):
     form=RegistrationForm()
@@ -61,7 +62,7 @@ def register_employee(request):
     if request.method=="POST":
         emai=request.POST.get('email')
         try:
-            a=Users.objects.get(useremail=emai)
+            a=Users.objects.get(useremail=email)
         except Users.DoesNotExist :
             return HttpResponse("NOt validated")
 
@@ -82,23 +83,22 @@ def register_employee(request):
 
 
 
-
+def home(request):
+    recievedrequests=Assign.objects.all()
+    return render(request,"home.html",{'recievedrequests':recievedrequests})
 
 def list_schools(request):
-    user=User.objects.first()
-    if request.method =='POST':
-        name=request.POST['search']
-
-
-        if user.schools_set.filter(name=name)!=None:
-            schools=user.schools_set.filter(name=name)
-            return render(request,'list_schools.html',{'schools':schools,'t':1})
-        elif user.schools_set.filter(headmaster=name) != None:
-            schools=user.schools_set.filter(headmaster=name)
-            return render(request,'list_schools.html',{'schools':schools,'t':2})
-
-
+    user=request.user
     schools=user.schools_set.all()
+    search_term=''
+    if 'search' in request.GET:
+        search_term=request.GET['search']
+        schools = schools.filter(
+            Q(name__icontains=search_term) | Q(headmaster__icontains=search_term)
+        )
+    return render(request,'list_schools.html',{'search_term':search_term,'schools':schools})
+
+
 
 def delete(request,id1):
     f=Schools.objects.filter(id=id1)
@@ -134,13 +134,3 @@ def login_asview(request):
 def logout_asview(request):
     logout(request)
     return redirect('/')
-
-
-def requests(requets):
-    if request.method=='POST':
-        employee_name=request.POST['employee_name']
-        school_name=request.POST['school_name']
-        r=Requests(employee_name=employee_name,school_name=school_name)
-        return redirect('/requests')
-
-    return render(request,'requests.html')

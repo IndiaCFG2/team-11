@@ -33,13 +33,12 @@ def test(request):
 
 
 
+
+#
 def query(request):
-	queries = Query.objects.all()
-    context={
-        'queries':queries
-    }
-    return render(request,'teachers/queries.html',context)
-    
+    queries=Query.objects.all()
+    return render(requests,'teachers/queries.html')
+
 
 
 
