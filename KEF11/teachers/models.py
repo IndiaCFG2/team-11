@@ -4,6 +4,8 @@ from Schools.models import Schools
 # Create your models here.
 
 class Subjects(models.Model):
+	class Meta:
+        verbose_name_plural = 'Subjects'
 	name = models.CharField(max_length=100)
 	url = models.URLField(max_length=100)
 
@@ -12,6 +14,8 @@ class Subjects(models.Model):
 
 
 class Teachers(models.Model):
+	class Meta:
+        verbose_name_plural = 'Teachers'
 	REGISTER = (
 	    ('Registered', 'Registered'),
 	    ('Not Registered', 'Not Registered'),
@@ -36,6 +40,8 @@ class Teachers(models.Model):
 
 
 class Stats(models.Model):
+	class Meta:
+        verbose_name_plural = 'Stats'
 	TUTORIALS = (
 	    ('Watched', 'Watched'),
 	    ('Not Watched', 'Not Watched'),
