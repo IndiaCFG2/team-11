@@ -16,3 +16,14 @@ class Employee(models.Model):
 class Users(models.Model):
     useremail=models.EmailField()
     is_super=models.BooleanField(default=False)
+
+
+class Manager(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE,default=None)
+    manager=models.ForeignKey(User, on_delete=models.CASCADE,default=None)
+
+
+class Assign(models.Model):
+    employee_name=models.CharField(max_length=100)
+    school_name=models.CharField(max_length=100)
+    date_posted = models.DateTimeField(default=timezone.now)

@@ -12,11 +12,15 @@ from .forms import RegistrationForm
 from django.http import HttpResponse, Http404
 from django.contrib.auth import login,logout
 # Create your views here.
-from employee.models import Employee,Users
+from employee.models import Employee,Users,Assign
+from django.utils import timezone
+import datetime
+
 
 def home(request):
+    recievedrequests=Assign.objects.all()
 
-    return render(request,'home.html')
+    return render(request,'home.html',{'recievedrequests':recievedrequests})
 
 
 
@@ -78,8 +82,7 @@ def register_employee(request):
 
 
 
-def home(request):
-    return render(request,"home.html")
+
 
 def list_schools(request):
     user=User.objects.first()
@@ -131,3 +134,13 @@ def login_asview(request):
 def logout_asview(request):
     logout(request)
     return redirect('/')
+
+
+def requests(requets):
+    if request.method=='POST':
+        employee_name=request.POST['employee_name']
+        school_name=request.POST['school_name']
+        r=Requests(employee_name=employee_name,school_name=school_name)
+        return redirect('/requests')
+
+    return render(request,'requests.html')

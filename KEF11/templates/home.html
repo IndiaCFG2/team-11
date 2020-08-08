@@ -37,7 +37,10 @@
 
       <div class="row row-content align-items-center">
         <div class="col-12 col-sm-4 order-sm-last col-md-3">
-          <h3>Some Instructions To the Program Manager</h3>
+          {% for requests in recievedrequests %}
+            {% if requests.employee_name == user.username %}
+          <h3>You are assigned to requests.school_name</h3>
+          {%endfor%}
         </div>
         <div class="col col-sm order-sm-first col-md">
 
