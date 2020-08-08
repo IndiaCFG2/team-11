@@ -33,8 +33,8 @@ def tutorial(request):
     return render(request, 'teachers/tutorials.html', context)
 
 def test(request):
-	context={}
-	return render(request,'teachers/test.html', context)
+    context={}
+    return render(request,'teachers/test.html', context)
 
 
 
