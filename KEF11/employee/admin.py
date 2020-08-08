@@ -1,6 +1,8 @@
 from django.contrib import admin
-from . import models
+from . models import Employee
+from . models import Users
+
 
 # Register your models here.
-
-admin.site.register(models.Employee)
+myModels = [Employee, Users]  # iterable list
+admin.site.register(myModels)

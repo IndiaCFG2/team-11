@@ -1,0 +1,28 @@
+{% extends "teachers/base.html" %}
+{% block content %}
+  <table class="table" style="padding-top:100px">
+    <thead>
+      <tr>
+        <th>Teacher</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Reply</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for query in queries %}
+      
+       <form method="POST">
+       {% csrf_token %} 
+          <input type="hidden" name="id" value="{{query.id}}"/>
+          <input name="id1" value="{{query.teacher}}"/>
+          <input name="id2" value="{{query.title}}"/>
+          <input name="id3" value="{{query.description}}"/>
+          <input type="text-area" name="reply"/>
+          <input type="Submit"/>
+      </form>
+
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

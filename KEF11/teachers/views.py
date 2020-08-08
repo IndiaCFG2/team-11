@@ -19,11 +19,16 @@ def teacher(request):
 
 
 def tutorial(request):
-    response = requests.get('https://sheetdb.io/api/v1/gb2weo7rv3acv')
-    print(response.content)
-    form = StatsForm
-    context = { 'form': form }
-    return render(request, 'teachers/tutorials.html', context)
+	if request.method == 'POST':
+	    form = StatsForm(request.POST)
+	    if form.is_valid():
+	        form.save()
+
+	response = requests.get('https://sheetdb.io/api/v1/gb2weo7rv3acv')
+	print(response.content)
+	form = StatsForm
+	context = { 'form': form }
+	return render(request, 'teachers/tutorials.html', context)
 
 
 

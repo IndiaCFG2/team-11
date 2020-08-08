@@ -11,6 +11,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from .forms import RegistrationForm
 from django.http import HttpResponse, Http404
 from django.contrib.auth import login,logout
+from teachers.models import Query
 # Create your views here.
 from employee.models import Employee,Users
 
@@ -26,11 +27,18 @@ def map(request):
                   { 'mapbox_access_token': mapbox_access_token })
 
 
-def list_schools(request):
-    user=User.objects.first()
-    schools=user.schools_set.all()
+# def list_schools(request):
+#     print("Dhoni")
+#     user = User.objects.filter(username='amyy28')
+    
+#     schools=user.schools_set.all()
+#     print("Virat")
+#     return render(request,'list_schools.html',{'schools':schools})
 
-    return render(request,'list_schools.html',{'schools':schools})
+# def schools_list(request):
+#     user = User.objects.filter(username='amyy28')
+#     schools = user.schools_set.all()
+#     return render(request, 'list_schools.html', {'schools': schools})
 
 
 def register_school(request):
@@ -47,7 +55,7 @@ def register_school(request):
         p=Users(useremail=email)
         p.save()
 
-        return redirect('/home')
+        return redirect('/')
 
     return render(request,'employee/school_register.html')
 
@@ -71,9 +79,14 @@ def register_employee(request):
     return render(request,"employee/register.html",{'form':form})
 
 
-
-
-
+def reply(request):
+    query=Query.objects.filter(reply='')
+    if request.method=="POST":
+        query=Query.objects.get(id=request.POST.get('id'))
+        query.reply=request.POST.get('reply')
+        query.save()
+        return redirect('/')
+    return render(request,'employee/replies.html',{'queries':query})
 
 
 
@@ -81,7 +94,7 @@ def register_employee(request):
 def home(request):
     return render(request,"home.html")
 
-def list_schools(request):
+def schools_list(request):
     user=User.objects.first()
     if request.method =='POST':
         name=request.POST['search']
@@ -96,6 +109,7 @@ def list_schools(request):
 
 
     schools=user.schools_set.all()
+    return render(request, 'list_schools.html', {'schools':schools})
 
 def delete(request,id1):
     f=Schools.objects.filter(id=id1)
@@ -120,7 +134,7 @@ def login_asview(request):
         if form.is_valid():
             user=form.get_user()
             login(request,user)
-            return redirect('/home')
+            return redirect('/')
         else:
             return render(request,'employee/login.html',{'form':form})
 
