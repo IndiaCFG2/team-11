@@ -8,6 +8,13 @@ from .forms import StatsForm
 import requests
 
 # Create your views here.
+def about(request):
+	context={}
+	return render(request,'teachers/about.html')
+
+def teacherlogin(request):
+	context={}
+	return render(request,'teachers/teacherlogin.html')
 
 def teacher(request):
     teachers = Teachers.objects.all()
