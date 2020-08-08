@@ -1,0 +1,14 @@
+<html>
+<title>
+</title>
+<body>
+</body>
+<form method="POST">
+{%csrf_token%}
+{%for i in form %}
+{{i}}
+{%endfor%}
+<input type="Submit"/>
+</form>
+
+</html>
