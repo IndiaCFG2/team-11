@@ -13,3 +13,6 @@ class Employee(models.Model):
 
     # def get_absolute_url(self):
     #     return reverse('candidate-detail', kwargs={'pk': self.pk})
+class Users(models.Model):
+    useremail=models.EmailField()
+    is_super=models.BooleanField(default=False)
