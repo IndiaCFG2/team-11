@@ -12,8 +12,7 @@ def register_school(request):
         email=request.POST['email']
         phonenumber= 98899877
         headmaster=request.POST['headmaster']
-
-
+        
 
         send_mail('KFSFOUNDATION','Hello {} thanks for registering'.format(school_name),'kfsngo@gmail.com',[email],fail_silently=False,)
         school=Schools.objects.create(employee=request.user,name=school_name,phone=phonenumber,email=email,headmaster=headmaster)
