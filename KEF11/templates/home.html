@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block extra_head %}
-
+ <link rel="stylesheet" href="{% static 'main.css'%}">
+    <link rel="stylesheet" href="{% static 'teachers/main.css' %}">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
      google.charts.load("current", {packages:["corechart"]});
@@ -30,14 +31,41 @@
 
 
   {% block content %}
-
+  <header class="jumbotron">
+        <div class="container">
+            <div class="row row-header">
+                <div class="col-12 col-sm-3 align-self-center">
+                    <img src="{% static 'teachers/logo.png' %}" class="img-fluid">
+                </div>
+                <div class="col-12 col-sm-9">
+                    <h1>KEF EDUCATION FOUNDATION</h1>
+                    <p>Key Education Foundation offers teacher training for early educators on a variety of topics that help make teaching and learning practices in the classroom developmentally appropriate, play based and effective.Welcome to our online training space. Here you will have access to all our training topics designed as short modules. You can take your learning into your own hands and grow into an excellent early childhood educator. </p>
+                </div>
+            </div>
+        </div>
+    </header>
+<div class="container">
     <div class="row row-content">
 
 
 
       <div class="row row-content align-items-center">
         <div class="col-12 col-sm-4 order-sm-last col-md-3">
-          <h3>Some Instructions To the Program Manager</h3>
+          <h3>Assigned Schools</h3>
+          {% for requests in recievedrequests %}
+            {% if requests.employee_name == user.username %}
+            <div class="card" ">
+              <div class="card-body">
+                <h5 class="card-title">You have Been Assigned To <a class="mr-2" href="{% url 'register_school'%}">{{requests.school_name}}</a></h5>
+                <p class="card-text">
+
+                </p>
+
+              </div>
+            </div>
+            <br>
+          {% endif %}
+          {%endfor%}
         </div>
         <div class="col col-sm order-sm-first col-md">
 
@@ -47,7 +75,7 @@
 
     </div>
     </div>
-
+</div>
 
 
     {% endblock %}
