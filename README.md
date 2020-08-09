@@ -7,7 +7,7 @@ One-stop portal for teachers and employees for content management, progress trac
 ### Our solution:
 A website having numerous features seggregated based on user roles
 
-##### Components: (In order of hierarchy)
+#### Components: (In order of hierarchy)
 1. Managers - Can add/remove employees
 2. Employees - each employee serves 10-15 schools
 3. Headmasters - representative of each school
