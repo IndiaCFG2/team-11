@@ -13,7 +13,7 @@ A website having numerous features seggregated based on user roles
 3. Headmasters - representative of each school
 4. Teachers - working at schools
 
-#### Salient Features: :sparkles:
+#### Salient Features: :sparkles: :boom:
 1. Data analytics
 2. Simplified user experience
 3. User oriented paths 
