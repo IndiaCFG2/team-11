@@ -27,7 +27,7 @@ https://github.com/IndiaCFG2/team-11
 ### In the cloned repository
 Execute 
 ```
-cd IPR_Website
+cd KEF11
 ```
 
 ### Install all the requirements at once
