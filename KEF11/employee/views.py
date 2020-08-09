@@ -13,12 +13,7 @@ from django.http import HttpResponse, Http404
 from django.contrib.auth import login,logout
 from teachers.models import Query
 # Create your views here.
-from employee.models import Employee,Users,Assign
-from django.utils import timezone
-import datetime
-from django.db.models import Q
-
-
+from employee.models import Employee,Users
 
 def home(request):
 
@@ -60,13 +55,9 @@ def register_school(request):
         p=Users(useremail=email)
         p.save()
 
-<<<<<<< HEAD
         return redirect('/')
-=======
-        return redirect('home')
->>>>>>> e2ce7e57c332544b9ecd95e7e8f6e1d40153feb8
 
-    return render(request,'school_register.html')
+    return render(request,'employee/school_register.html')
 
 def register_employee(request):
     form=RegistrationForm()
@@ -74,7 +65,7 @@ def register_employee(request):
     if request.method=="POST":
         emai=request.POST.get('email')
         try:
-            a=Users.objects.get(useremail=email)
+            a=Users.objects.get(useremail=emai)
         except Users.DoesNotExist :
             return HttpResponse("NOt validated")
 
@@ -101,10 +92,8 @@ def reply(request):
 
 
 def home(request):
-    recievedrequests=Assign.objects.all()
-    return render(request,"home.html",{'recievedrequests':recievedrequests})
+    return render(request,"home.html")
 
-<<<<<<< HEAD
 def schools_list(request):
     user=User.objects.first()
     if request.method =='POST':
@@ -121,20 +110,6 @@ def schools_list(request):
 
     schools=user.schools_set.all()
     return render(request, 'list_schools.html', {'schools':schools})
-=======
-def list_schools(request):
-    user=request.user
-    schools=user.schools_set.all()
-    search_term=''
-    if 'search' in request.GET:
-        search_term=request.GET['search']
-        schools = schools.filter(
-            Q(name__icontains=search_term) | Q(headmaster__icontains=search_term)
-        )
-    return render(request,'list_schools.html',{'search_term':search_term,'schools':schools})
-
-
->>>>>>> e2ce7e57c332544b9ecd95e7e8f6e1d40153feb8
 
 def delete(request,id1):
     f=Schools.objects.filter(id=id1)

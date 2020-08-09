@@ -2,7 +2,7 @@
 {% block content %}
     <h2 class="container">Here's the list of queries with their details!</h2>
     <div style="padding-left:900px">
-      <a href="{% url 'query-create' %}" class="btn btn-warning">Add new >></a>
+      <a href="{% url 'query-create' %}" class="btn btn-secondary btn-sm mt-1 mb-1" style="background-color:grey">Add new >></a>
       </div>
     <form action="" style="padding-top:20px">
       <input type="text" placeholder="Search.." name="search" id="search" value="{{search_term}}">

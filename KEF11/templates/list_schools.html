@@ -48,8 +48,8 @@
 
     </ul>
 
-    <form class="form-inline my-2 my-lg-0" method="get" action="">
-      
+    <form class="form-inline my-2 my-lg-0" method="post">
+       {% csrf_token %}
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
@@ -66,11 +66,8 @@
         {% endfor %}
     {%endif %}
     <div class="row" style="align-items: center;">
+      
 
-<<<<<<< HEAD
-=======
-
->>>>>>> e2ce7e57c332544b9ecd95e7e8f6e1d40153feb8
   {% for school in schools %}
     <div class="col-sm-4" style="margin: 15px;">
       <div class="card">
