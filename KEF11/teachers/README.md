@@ -1,4 +1,4 @@
-## Contains the teachers module
+## :pencil: Contains the teachers module
 
 #### Features
 - View tutorials and track progress
