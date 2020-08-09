@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="#Navbar">
                             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"><a class="nav-link" href="{% url 'teacher-home' %}"><span class="fa fa-home fa-lg">Home</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="#"><span class="fa fa-info fa-lg">About</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'teacher-about' %}"><span class="fa fa-info fa-lg">About</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'tutorial-home' %}"><span class="fa fa-list fa-lg">Tutorials</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'test-home' %}"><span class="fa fa-address-card fa-lg">Tests</span></a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'queries-home' %}"><span class="fa fa-address-card fa-lg">Post Queries</span></a></li>
@@ -30,13 +30,13 @@
             {% if user.is_authenticated %}
             <span class="navbar-text">
                     <!--<a data-toggle="modal" data-target="#loginModal">-->
-                        <a id="buttonLogin" type="button" role="button">
+                        <a href="{% url 'teacher-teacherlogin' %}"id="buttonLogin" type="button" role="button">
                     <span class="fa fa-sign-in"></span> Logout</a>
                 </span>
             {% else %}
                         <span class="navbar-text">
                     <!--<a data-toggle="modal" data-target="#loginModal">-->
-                        <a id="buttonLogin" type="button" role="button">
+                        <a href="{% url 'teacher-teacherlogin' %}"id="buttonLogin" type="button" role="button">
                     <span class="fa fa-sign-in"></span> Login</a>
                 </span>
             {% endif %}
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-12 col-sm-9">
                     <h1>KEF EDUCATION FOUNDATION</h1>
-                    <p>Key Education Foundation offers teacher training for early educators on a variety of topics that help make teaching and learning practices in the classroom developmentally appropriate, play based and effective.</p>
+                    <p>Key Education Foundation offers teacher training for early educators on a variety of topics that help make teaching and learning practices in the classroom developmentally appropriate, play based and effective.Welcome to our online training space. Here you will have access to all our training topics designed as short modules. You can take your learning into your own hands and grow into an excellent early childhood educator. </p>
                 </div>
             </div>
         </div>

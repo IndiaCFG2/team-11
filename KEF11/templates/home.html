@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block extra_head %}
+ <link rel="stylesheet" href="{% static 'main.css'%}">
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript">
@@ -37,7 +38,21 @@
 
       <div class="row row-content align-items-center">
         <div class="col-12 col-sm-4 order-sm-last col-md-3">
-          <h3>Some Instructions To the Program Manager</h3>
+          <h3>Assigned Schools</h3>
+          {% for requests in recievedrequests %}
+            {% if requests.employee_name == user.username %}
+            <div class="card" ">
+              <div class="card-body">
+                <h5 class="card-title">You have Been Assigned To <a class="mr-2" href="{% url 'register_school'%}">{{requests.school_name}}</a></h5>
+                <p class="card-text">
+
+                </p>
+
+              </div>
+            </div>
+            <br>
+          {% endif %}
+          {%endfor%}
         </div>
         <div class="col col-sm order-sm-first col-md">
 

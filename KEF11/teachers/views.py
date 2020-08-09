@@ -8,6 +8,13 @@ from .forms import StatsForm
 import requests
 
 # Create your views here.
+def about(request):
+	context={}
+	return render(request,'teachers/about.html')
+
+def teacherlogin(request):
+	context={}
+	return render(request,'teachers/teacherlogin.html')
 
 def teacher(request):
     teachers = Teachers.objects.all()
@@ -30,20 +37,21 @@ def tutorial(request):
 	context = { 'form': form }
 	return render(request, 'teachers/tutorials.html', context)
 
-
-
 def test(request):
-    context = {}
-    return render(request, 'teachers/test.html', context)
+    context={}
+    return render(request,'teachers/test.html', context)
 
 
 
+
+#
 def query(request):
 	queries = Query.objects.all()
 	context = {
 		'queries': queries
 	}
 	return render(request, 'teachers/queries.html', context)
+
 
 
 class QueryCreateView(CreateView):
@@ -66,7 +74,12 @@ class QueryUpdateView(UpdateView):
 	def form_valid(self, form):
 	    form.instance.author = self.request.user
 	    return super().form_valid(form)
-	    
+
+
+
+class QueryDeleteView(LoginRequiredMixin, DeleteView):
+    model = Query
+    success_url = '/teachers/queries/'
 
 class QueryDeleteView(DeleteView):
 	model = Query
