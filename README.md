@@ -19,3 +19,46 @@ A website having numerous features seggregated based on user roles
 3. User oriented paths 
 4. Interactive UI
 
+## 🔧 Instructions to run
+```
+https://github.com/IndiaCFG2/team-11
+```
+
+### In the cloned repository
+Execute 
+```
+cd IPR_Website
+```
+
+### Install all the requirements at once
+```
+pip3 install -r requirements.txt
+```
+
+### Create a superuser for login
+Create your username and password of your choice
+```
+python3 manage.py createsuperuser
+```
+
+### Now you require to migrate all the database table schemas to the default sql database 
+```
+python3 manage.py makemigrations
+```
+
+### Migrate it
+```
+python3 manage.py migrate
+```
+
+### Now run the server
+```
+python3 manage.py runserver
+```
+
+## Hit the below URL
+```http://127.0.0.1:8000/```
+
+Now go to login and enter the created username and password. Once logged in, create the team by filling in the required details and then skit and presentations data can easily be loaded using the forms in the UI. 
+
+
